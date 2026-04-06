@@ -1,5 +1,7 @@
-import { ArchiveIcon } from "lucide-react"
+import { ArchiveIcon, MessageCircleIcon, ThumbsUpIcon } from "lucide-react"
 import { Section } from "@/components/section"
+import { Card } from "@/components/card"
+import { Button } from "@/components/button"
 
 export default function Home() {
   return (
@@ -16,7 +18,25 @@ export default function Home() {
             <Section.IssueCount>32</Section.IssueCount>
           </Section.Header>
           <Section.Content>
-            <div>card 1</div>
+            <Card.Root>
+              <Card.Header>
+                <Card.Number>BOARDAPPV1-001</Card.Number>
+                <Card.Title>
+                  Implementar cartão de crédito na plataforma
+                </Card.Title>
+              </Card.Header>
+              <Card.Footer>
+                <Button>
+                  <ThumbsUpIcon className="size-3" />
+                  <span className="text-sm">12</span>
+                </Button>
+
+                <Button>
+                  <MessageCircleIcon className="size-3" />
+                  <span className="text-sm">3</span>
+                </Button>
+              </Card.Footer>
+            </Card.Root>
             <div>card 2</div>
             <div>card 3</div>
           </Section.Content>
