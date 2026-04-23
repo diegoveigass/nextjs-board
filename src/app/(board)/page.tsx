@@ -16,7 +16,7 @@ interface BoardProps {
 export default async function Board({ searchParams }: BoardProps) {
   const { q } = await searchParams
 
-  const issues = await listIssues()
+  const issues = await listIssues({ search: q })
 
   console.log({ issues })
 
@@ -31,27 +31,33 @@ export default async function Board({ searchParams }: BoardProps) {
           <Section.IssueCount>{issues.backlog.length}</Section.IssueCount>
         </Section.Header>
         <Section.Content>
-          {issues.backlog.map((issue) => {
-            return (
-              <Card.Root key={issue.id}>
-                <Card.Header>
-                  <Card.Number>ISS-{issue.issueNumber}</Card.Number>
-                  <Card.Title>{issue.title}</Card.Title>
-                </Card.Header>
-                <Card.Footer>
-                  <Button>
-                    <ThumbsUpIcon className="size-3" />
-                    <span className="text-sm">44</span>
-                  </Button>
+          {issues.backlog.length === 0 ? (
+            <div className="flex items-center justify-center py-8 text-center">
+              <p className="text-sm">No issues matching your filters.</p>
+            </div>
+          ) : (
+            issues.backlog.map((issue) => {
+              return (
+                <Card.Root key={issue.id}>
+                  <Card.Header>
+                    <Card.Number>ISS-{issue.issueNumber}</Card.Number>
+                    <Card.Title>{issue.title}</Card.Title>
+                  </Card.Header>
+                  <Card.Footer>
+                    <Button>
+                      <ThumbsUpIcon className="size-3" />
+                      <span className="text-sm">44</span>
+                    </Button>
 
-                  <Button>
-                    <MessageCircleIcon className="size-3" />
-                    <span className="text-sm">{issue.comments}</span>
-                  </Button>
-                </Card.Footer>
-              </Card.Root>
-            )
-          })}
+                    <Button>
+                      <MessageCircleIcon className="size-3" />
+                      <span className="text-sm">{issue.comments}</span>
+                    </Button>
+                  </Card.Footer>
+                </Card.Root>
+              )
+            })
+          )}
         </Section.Content>
       </Section.Root>
 
@@ -64,27 +70,33 @@ export default async function Board({ searchParams }: BoardProps) {
           <Section.IssueCount>{issues.todo.length}</Section.IssueCount>
         </Section.Header>
         <Section.Content>
-          {issues.todo.map((issue) => {
-            return (
-              <Card.Root key={issue.id}>
-                <Card.Header>
-                  <Card.Number>ISS-{issue.issueNumber}</Card.Number>
-                  <Card.Title>{issue.title}</Card.Title>
-                </Card.Header>
-                <Card.Footer>
-                  <Button>
-                    <ThumbsUpIcon className="size-3" />
-                    <span className="text-sm">44</span>
-                  </Button>
+          {issues.todo.length === 0 ? (
+            <div className="flex items-center justify-center py-8 text-center">
+              <p className="text-sm">No issues matching your filters.</p>
+            </div>
+          ) : (
+            issues.todo.map((issue) => {
+              return (
+                <Card.Root key={issue.id}>
+                  <Card.Header>
+                    <Card.Number>ISS-{issue.issueNumber}</Card.Number>
+                    <Card.Title>{issue.title}</Card.Title>
+                  </Card.Header>
+                  <Card.Footer>
+                    <Button>
+                      <ThumbsUpIcon className="size-3" />
+                      <span className="text-sm">44</span>
+                    </Button>
 
-                  <Button>
-                    <MessageCircleIcon className="size-3" />
-                    <span className="text-sm">{issue.comments}</span>
-                  </Button>
-                </Card.Footer>
-              </Card.Root>
-            )
-          })}
+                    <Button>
+                      <MessageCircleIcon className="size-3" />
+                      <span className="text-sm">{issue.comments}</span>
+                    </Button>
+                  </Card.Footer>
+                </Card.Root>
+              )
+            })
+          )}
         </Section.Content>
       </Section.Root>
 
@@ -97,27 +109,33 @@ export default async function Board({ searchParams }: BoardProps) {
           <Section.IssueCount>{issues.in_progress.length}</Section.IssueCount>
         </Section.Header>
         <Section.Content>
-          {issues.in_progress.map((issue) => {
-            return (
-              <Card.Root key={issue.id}>
-                <Card.Header>
-                  <Card.Number>ISS-{issue.issueNumber}</Card.Number>
-                  <Card.Title>{issue.title}</Card.Title>
-                </Card.Header>
-                <Card.Footer>
-                  <Button>
-                    <ThumbsUpIcon className="size-3" />
-                    <span className="text-sm">44</span>
-                  </Button>
+          {issues.in_progress.length === 0 ? (
+            <div className="flex items-center justify-center py-8 text-center">
+              <p className="text-sm">No issues matching your filters.</p>
+            </div>
+          ) : (
+            issues.in_progress.map((issue) => {
+              return (
+                <Card.Root key={issue.id}>
+                  <Card.Header>
+                    <Card.Number>ISS-{issue.issueNumber}</Card.Number>
+                    <Card.Title>{issue.title}</Card.Title>
+                  </Card.Header>
+                  <Card.Footer>
+                    <Button>
+                      <ThumbsUpIcon className="size-3" />
+                      <span className="text-sm">44</span>
+                    </Button>
 
-                  <Button>
-                    <MessageCircleIcon className="size-3" />
-                    <span className="text-sm">{issue.comments}</span>
-                  </Button>
-                </Card.Footer>
-              </Card.Root>
-            )
-          })}
+                    <Button>
+                      <MessageCircleIcon className="size-3" />
+                      <span className="text-sm">{issue.comments}</span>
+                    </Button>
+                  </Card.Footer>
+                </Card.Root>
+              )
+            })
+          )}
         </Section.Content>
       </Section.Root>
 
@@ -130,27 +148,33 @@ export default async function Board({ searchParams }: BoardProps) {
           <Section.IssueCount>{issues.done.length}</Section.IssueCount>
         </Section.Header>
         <Section.Content>
-          {issues.done.map((issue) => {
-            return (
-              <Card.Root key={issue.id}>
-                <Card.Header>
-                  <Card.Number>ISS-{issue.issueNumber}</Card.Number>
-                  <Card.Title>{issue.title}</Card.Title>
-                </Card.Header>
-                <Card.Footer>
-                  <Button>
-                    <ThumbsUpIcon className="size-3" />
-                    <span className="text-sm">44</span>
-                  </Button>
+          {issues.done.length === 0 ? (
+            <div className="flex items-center justify-center py-8 text-center">
+              <p className="text-sm">No issues matching your filters.</p>
+            </div>
+          ) : (
+            issues.done.map((issue) => {
+              return (
+                <Card.Root key={issue.id}>
+                  <Card.Header>
+                    <Card.Number>ISS-{issue.issueNumber}</Card.Number>
+                    <Card.Title>{issue.title}</Card.Title>
+                  </Card.Header>
+                  <Card.Footer>
+                    <Button>
+                      <ThumbsUpIcon className="size-3" />
+                      <span className="text-sm">44</span>
+                    </Button>
 
-                  <Button>
-                    <MessageCircleIcon className="size-3" />
-                    <span className="text-sm">{issue.comments}</span>
-                  </Button>
-                </Card.Footer>
-              </Card.Root>
-            )
-          })}
+                    <Button>
+                      <MessageCircleIcon className="size-3" />
+                      <span className="text-sm">{issue.comments}</span>
+                    </Button>
+                  </Card.Footer>
+                </Card.Root>
+              )
+            })
+          )}
         </Section.Content>
       </Section.Root>
     </main>
