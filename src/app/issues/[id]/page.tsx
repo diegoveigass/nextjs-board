@@ -4,6 +4,8 @@ import Link from "next/link"
 import { Button } from "@/components/button"
 import { getIssue } from "@/http/get-issue"
 import { IssueCommentsList } from "./issue-comments/issue-comments-list"
+import { Suspense } from "react"
+import { IssueCommentsSkeleton } from "./issue-comments/issue-comments-skeleton"
 
 interface IssuePageProps {
   params: Promise<{ id: string }>
@@ -67,7 +69,9 @@ export default async function IssuePage({ params }: IssuePageProps) {
         <form action=""></form>
 
         <div className="mt-3">
-          <IssueCommentsList issueId={id} />
+          <Suspense fallback={<IssueCommentsSkeleton />}>
+            <IssueCommentsList issueId={id} />
+          </Suspense>
         </div>
       </div>
     </main>
