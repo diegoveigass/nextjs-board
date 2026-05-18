@@ -4,6 +4,7 @@ import Link from "next/link"
 import { getIssue } from "@/http/get-issue"
 import { todo } from "node:test"
 import { Button } from "@/components/button"
+import { IssueCommentsList } from "./issue-comments/issue-comments-list"
 
 interface IssuePageProps {
   params: Promise<{ id: string }>
@@ -59,6 +60,16 @@ export default async function IssuePage({ params }: IssuePageProps) {
         <p className="text-sm text-navy-100 leading-relaxed">
           {issue.description}
         </p>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <span className="font-semibold">Comments</span>
+
+        <form action=""></form>
+
+        <div className="mt-3">
+          <IssueCommentsList issueId={id} />
+        </div>
       </div>
     </main>
   )
