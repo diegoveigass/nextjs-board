@@ -1,11 +1,14 @@
 import { IssueSchema } from "@/api/routes/get-issue"
 import { clientEnv } from "@/env"
+import { setTimeout } from "node:timers/promises"
 
 interface GetIssueParams {
   id?: string
 }
 
 export async function getIssue({ id }: GetIssueParams) {
+  await setTimeout(2000)
+
   const url = new URL(`/api/issues/${id}`, clientEnv.NEXT_PUBLIC_API_URL)
 
   const response = await fetch(url)
