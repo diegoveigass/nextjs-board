@@ -33,6 +33,7 @@ export default function IssueLoading() {
         <div className="mt-3 space-y-4">
           {Array.from({ length: 3 }).map((_, index) => (
             <div
+              // biome-ignore lint/suspicious/noArrayIndexKey: <its fine because its a static list of skeletons>
               key={index}
               className="flex gap-3 rounded-xl bg-navy-700/50 p-4"
             >

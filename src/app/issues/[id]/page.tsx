@@ -1,9 +1,8 @@
 import { ArchiveIcon, MoveLeftIcon, ThumbsUpIcon } from "lucide-react"
 import type { Metadata } from "next"
 import Link from "next/link"
-import { getIssue } from "@/http/get-issue"
-import { todo } from "node:test"
 import { Button } from "@/components/button"
+import { getIssue } from "@/http/get-issue"
 import { IssueCommentsList } from "./issue-comments/issue-comments-list"
 
 interface IssuePageProps {
