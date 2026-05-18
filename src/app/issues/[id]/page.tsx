@@ -1,4 +1,9 @@
-import { ArchiveIcon, MoveLeftIcon, ThumbsUpIcon } from "lucide-react"
+import {
+  ArchiveIcon,
+  MessageCirclePlusIcon,
+  MoveLeftIcon,
+  ThumbsUpIcon,
+} from "lucide-react"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Button } from "@/components/button"
@@ -66,7 +71,20 @@ export default async function IssuePage({ params }: IssuePageProps) {
       <div className="flex flex-col gap-2">
         <span className="font-semibold">Comments</span>
 
-        <form action=""></form>
+        <form className="relative w-full">
+          <input
+            type="text"
+            placeholder="Leave a comment.."
+            className="bg-navy-900 h-11 pl-3 pr-24 w-full"
+          />
+          <button
+            type="submit"
+            className="flex items-center gap-2 text-indigo-400 absolute right-3 top-1/2 -translate-y-1/2 hover:text-indigo-300 cursor-pointer disabled:opacity-50"
+          >
+            Publish
+            <MessageCirclePlusIcon className="size-3" />
+          </button>
+        </form>
 
         <div className="mt-3">
           <Suspense fallback={<IssueCommentsSkeleton />}>
