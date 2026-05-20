@@ -18,8 +18,6 @@ export default async function Board({ searchParams }: BoardProps) {
 
   const issues = await listIssues({ search: q })
 
-  console.log({ issues })
-
   return (
     <main className="grid grid-cols-4 gap-5 flex-1 items-stretch">
       <Section.Root>
