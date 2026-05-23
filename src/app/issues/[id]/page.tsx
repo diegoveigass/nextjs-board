@@ -50,13 +50,7 @@ export default async function IssuePage({ params }: IssuePageProps) {
           {statusLabels[issue.status]}
         </span>
 
-        <Suspense
-          fallback={
-            <div className="h-7 w-16 animate-pulse rounded bg-navy-600" />
-          }
-        >
-          <IssueLikeButton issueId={issue.id} />
-        </Suspense>
+        <IssueLikeButton issueId={issue.id} />
       </div>
 
       <div className="space-y-2">
