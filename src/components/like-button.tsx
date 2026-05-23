@@ -23,16 +23,16 @@ export function LikeButton({
 }: LikeButtonProps) {
   const queryClient = useQueryClient()
 
-  const { mutate: handleToggleLike, isPending } = useMutation({
+  const { mutate: onToggleLike, isPending } = useMutation({
     mutationFn: () => toggleLike({ issueId }),
     onMutate: async () => {
-      const previousData = queryClient.getQueryData<IssueInteractionsResponse>([
-        "issue-likes",
-        issueId,
-      ])
+      const previousData =
+        queryClient.getQueriesData<IssueInteractionsResponse>({
+          queryKey: ["issue-likes"],
+        })
 
-      queryClient.setQueryData<IssueInteractionsResponse>(
-        ["issue-likes", issueId],
+      queryClient.setQueriesData<IssueInteractionsResponse>(
+        { queryKey: ["issue-likes"] },
         (oldData) => {
           if (!oldData) {
             return undefined
@@ -58,14 +58,22 @@ export function LikeButton({
 
       return { previousData }
     },
-    onError: async (err, _params, context) => {
+    onError: async (_err, _params, context) => {
       if (context?.previousData) {
-        queryClient.setQueryData(["issue-likes", issueId], context.previousData)
+        for (const [queryKey, data] of context.previousData) {
+          queryClient.setQueryData(queryKey, data)
+        }
       }
     },
   })
 
   const liked = initialLiked
+
+  function handleToggleLike(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault()
+    event.stopPropagation()
+    onToggleLike()
+  }
 
   return (
     <Button
@@ -74,7 +82,7 @@ export function LikeButton({
       className="data-[liked=true]:bg-indigo-600 data-[liked=true]:text-white data-[liked=true]:hover:bg-indigo-500"
       aria-label={liked ? "unlike" : "like"}
       disabled={isPending}
-      onClick={() => handleToggleLike()}
+      onClick={handleToggleLike}
     >
       <ThumbsUpIcon className="size-3" />
       <span className="text-sm">{initialLikes}</span>
