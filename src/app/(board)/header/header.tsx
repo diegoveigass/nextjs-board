@@ -1,5 +1,6 @@
 import { UserButton } from "@/components/header/user-button"
 import { SearchInput } from "./search-input"
+import { Suspense } from "react"
 
 export function Header() {
   return (
@@ -12,7 +13,9 @@ export function Header() {
       </div>
 
       <div className="flex items-center gap-4">
-        <SearchInput />
+        <Suspense>
+          <SearchInput />
+        </Suspense>
         <UserButton />
       </div>
     </div>

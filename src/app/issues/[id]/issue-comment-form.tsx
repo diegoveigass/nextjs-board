@@ -31,8 +31,9 @@ export function IssueCommentForm({
   })
 
   async function handleCreateComment(data: CreateCommentData) {
-    console.log("Creating comment with data:", data)
     await onCreateComment(data.text)
+
+    reset()
   }
 
   return (
